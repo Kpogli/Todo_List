@@ -96,6 +96,12 @@ App = {
                             .prop('checked', taskCompleted)
                             .on('click', App.toggleCompleted)
 
+            // Create the html for the task checkbox
+            $newTaskTemplate.find('.checkbox').html(taskContent)
+                            .prop('name', taskID)
+                            .prop('checked', taskCompleted)
+                            .on('click', App.toggleCompleted)
+
             // Put the task in the correct list
             if (taskCompleted) {
                 $('#completedTaskList').append($newTaskTemplate)
@@ -123,6 +129,7 @@ App = {
     toggleCompleted: async (e) => {
         App.setLoading(true)
         const taskId = e.target.name
+        // alert(taskId)
         await App.todoList.toggleCompleted(taskId)
         window.location.reload()
     },    
